@@ -120,11 +120,11 @@
   Hint: A new object should have appeared in the RStudio window, top right. What is the name of this area? Global Environment or History?
 
 - Class: cmd_question
-  Output: "Super! By reading in the data you have mastered one big hurdle in working with R. There are specific variants of the read.table()-function, such as read.csv()/read.csv2(). You can find their specifications in the Help of read.table(). Let's check them out. Call the help for read.table().""
+  Output: "Super! By reading in the data you have mastered one big hurdle in working with R. There are specific variants of the read.table-function, such as read.csv/read.csv2. You can find their specifications in the Help of read.table. Let's check them out. Call the help for read.table.""
   CorrectAnswer: ?read.table
   AnswerTests: any_of_exprs('?read.table', '?read.table()', 'help(read.table)')
   Hint: 'You can call up the help using ? We are looking for help on the function "read.table". The 
-    correct input is as follows: ?read.table. Type or copy this into the console and then 
+    correct input is as follows: '?read.table. Type or copy this into the console and then 
     then send your input to R with the "Enter" key.'
   
 - Class: mult_question
