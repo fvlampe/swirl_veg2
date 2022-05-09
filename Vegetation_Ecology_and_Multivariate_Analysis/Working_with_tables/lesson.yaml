@@ -63,9 +63,9 @@
 
 - Class: mult_question
   Output: By which character are the individual values separated?
-  CorrectAnswer: 'semicolon'
+  CorrectAnswer: 'comma'
   AnswerChoices: "semicolon; comma; point"
-  AnswerTests: omnitest(correctVal='semicolon')
+  AnswerTests: omnitest(correctVal='comma')
   Hint: Look again in the editor. 
 
 - Class: mult_question
@@ -91,14 +91,14 @@
   Output: Now you have all the information you need to read in.
   
 - Class: text
-  Output: 'So the function to read in the agro-forestry data file could look like this: read.table(file= "/data/file", header = TRUE, sep = ";", dec = ".")'
+  Output: 'So the function to read in the agro-forestry data file could look like this: read.table(file= "/data/file", header = TRUE, sep = ",", dec = ".")'
   
 
 - Class: cmd_question
-  Output: 'In the next step, please load the CSV file into your console. You use the function read.table() for this. To make this course work, we avoid typing the real directory here. Instead simply use "agroforest_path" (works only here in this swirl-course). Type read.table(agroforest_path, header = TRUE, sep = ";",dec = ".") or copy it directly. Then press "Enter" and load the file into your console.'  
+  Output: 'In the next step, please load the CSV file into your console. You use the function read.table() for this. To make this course work, we avoid typing the real directory here. Instead simply use "agroforest_path" (works only here in this swirl-course). Type read.table(agroforest_path, header = TRUE, sep = "," ,dec = ".") or copy it directly. Then press "Enter" and load the file into your console.'
   CorrectAnswer: read.table(agroforest_path)
-  AnswerTests: omnitest(correctVal = read.table(agroforest_path))
-  Hint: 'Use the function read.table(agroforest_path, header = TRUE, sep = ";",dec = "."). The data should appear in your Console'
+  AnswerTests: omnitest(correctExpr = 'read.table(agroforest_path, header = TRUE, sep = ",", dec = ".")')
+  Hint: 'Use the function read.table(agroforest_path, header = TRUE, sep = "," ,dec = "."). The data should appear in your Console'
 
 - Class: text
   Output: In the console, above this text, you should have seen the table that was read in, which looks like a jumble of numbers. Of course, you don't just want to look at it, you also want to use it. 
@@ -107,10 +107,10 @@
   Output: 'With an assignment arrow "<-" you can assign the data to a self-selected object name. This way, the file becomes a usable variable in the programme. As you may remember, in R this is called an "object".'
 
 - Class: cmd_question
-  Output: You can now type var <- read.table(agroforest_path, header = TRUE, sep = ";",dec = ".") into the console or copy the function and press "Enter" - this way you assign the object name "var" to the file!
-  CorrectAnswer: var<-read.table(agroforest_path)
-  AnswerTests: omnitest(var <- read.table(agroforest_path))
-  Hint: You use an assignment arrow and the read.table function. var <- read.table(agroforest_path, header = TRUE, sep = ";",dec = ".")
+  Output: 'You can now type af <- read.table(agroforest_path, header = TRUE, sep = ",", dec = ".") into the console or copy the function and press "Enter". This way you assign the object name "af" to the file! Please ignore the warning messsage.'
+  CorrectAnswer: af <- read.table(agroforest_path, header = TRUE, sep = ",", dec = ".")
+  AnswerTests: omnitest(correctExpr = 'af <- read.table(agroforest_path, header = TRUE, sep = ",", dec = ".")')
+  Hint: 'You use an assignment arrow and the read.table function. af <- read.table(agroforest_path, header = TRUE, sep = ",", dec = ".")'
   
 - Class: mult_question
   Output: Where does the data from the CSV file appear now?
@@ -119,29 +119,53 @@
   AnswerTests: omnitest(correctVal='Global Environment')
   Hint: A new object should have appeared in the RStudio window, top right. What is the name of this area? Global Environment or History?
 
-- Class: text
-  Output: 'Super! By reading in the data you have mastered one big hurdle in working with R. Now we should check if everything is loaded correctly and get some informations about the dataset'
+- Class: cmd_question
+  Output: "Super! By reading in the data you have mastered one big hurdle in working with R. There are specific variants of the read.table()-function, such as read.csv()/read.csv2(). You can find their specifications in the Help of read.table(). Let's check them out. Call the help for read.table().""
+  CorrectAnswer: ?read.table
+  AnswerTests: any_of_exprs('?read.table', '?read.table()', 'help(read.table)')
+  Hint: 'You can call up the help using ? We are looking for help on the function "read.table". The 
+    correct input is as follows: ?read.table. Type or copy this into the console and then 
+    then send your input to R with the "Enter" key.'
+  
+- Class: mult_question
+  Output: "Scroll down in the Usage section to the function 'read.csv2'. For each function you find ad list of arguments with their default values. Default values are used, when no other specification is given when calling the function. Explanations of the arguments are found in section Arguments further down. Which field separator character is used by default in 'read.csv2'?"
+  CorrectAnswer: 'semicolon'
+  AnswerChoices: "semicolon; comma; point"
+  AnswerTests: omnitest(correctVal='comma')
+  Hint: "Look again on the help page. The field separator character is defined by the argument 'sep'."
   
 - Class: text
-  Output: 'In RStudio you can simply View the dataset by clicking on in in the Environment. Just try it out (it does the same as typing view(var) in the Console). You can look at the table and sort the columns. When it worked, please continue with "Enter"'
+  Output: Very nice. 'read.csv2' can be used for various European locales, where the comma character serves as the decimal point. Sometimes these function can shorten the code for loading a dataset a little bit, if you know the specifications of your CSV-file. However, you should know the basic function and how to check the separators and decimals of a CSV, as there are no universal rules!'
+  
+- Class: text
+  Output: Now we should check if everything is loaded correctly and get some informations about the dataset
+  
+- Class: cmd_question
+  Output: 'In RStudio you can simply view the dataset by clicking on in in the Environment (it does the same as typing View(af) in the Console). Just try it out'
+  CorrectAnswer: View(veg)
+  AnswerTests: omnitest(correctVal = View(veg))
+  Hint: The first letter must be capitalised. Do not use spaces.
+
+- Class: text
+  Output: A new tab-window should have opened. You can look at the table and even sort the columns. 
   
 - Class: cmd_question
   Output: The table is quite extensive and the view in the "View-Tab" may be somewhat confusing. You can also check the first rows of the data in the console by displaying the beginning of the table with head(). Try to aply the function on the dataset. 
-  CorrectAnswer: head(var)
-  AnswerTests: omnitest(correctVal = head(var))
-  Hint: Type head(var). 
+  CorrectAnswer: head(af)
+  AnswerTests: omnitest(correctVal = head(af))
+  Hint: Type head(af). 
   
-- Class: exact_question
-  Output: With R you can also display the number of rows and columns. With the code nrow(var), the programme gives you the number of rows. Let R show you the number of rows.
-  CorrectAnswer: nrow(var)
-  AnswerTests: omnitest(correctVal = nrow(var))
-  Hint: Use the function nrow(var). 
+- Class: cmd_question
+  Output: With R you can also display the number of rows and columns. With the code nrow(af), the programme gives you the number of rows. Let R show you the number of rows.
+  CorrectAnswer: nrow(af)
+  AnswerTests: omnitest(correctVal = nrow(af))
+  Hint: Use the function nrow(af). 
   
 - Class: exact_question
   Output: How many lines are there?
   CorrectAnswer: 119
   AnswerTests: omnitest(correctVal = 119)
-  Hint: Enter the command nrow(var) and press "enter". Now the number of lines is given. Type the correct number. 
+  Hint: Enter the command nrow(af) and press "enter". Now the number of lines is given. Type the correct number.
 
 - Class: mult_question
   Output: The same is possible with the number of columns. What could the command be?
@@ -151,35 +175,35 @@
   Hint: Look at the function for displaying the rows. 
 
 - Class: exact_question
-  Output: Now display the number of columns in the var data set.
-  CorrectAnswer: ncol(var)
-  AnswerTests: omnitest(correctVal = ncol(var))
-  Hint: Use the function ncol(var).
+  Output: Now display the number of columns in the af data set.
+  CorrectAnswer: ncol(af)
+  AnswerTests: omnitest(correctVal = ncol(af))
+  Hint: Use the function ncol(af).
 
 - Class: exact_question
-  Output: It is also possible to query both values at the same time. This gives you the "dimensions" of the table. Enter dim(var) for this. 
-  CorrectAnswer: dim(var)
-  AnswerTests: omnitest(correctVal = dim(var))
+  Output: It is also possible to query both values at the same time. This gives you the "dimensions" of the table. Enter dim(af) for this. 
+  CorrectAnswer: dim(af)
+  AnswerTests: omnitest(correctVal = dim(af))
   Hint: Make sure that the brackets are closed. Do not use spaces.
   
 - Class: text
   Output: You'll see only two values are given and no "label". Check what is displayed first - rows or columns? You can also see that both dimensions are also given in the Environment window of RStudio. According to the rules for scientific tables the rows are "observations" and the columns are "variables". However, it is still useful to know the functions, as you may need them for some calculations in R.
 
 - Class: exact_question
-  Output: If you look at the table "var", you will see that the columns have headings. With names(var) you can display all the column headings without having to switch from the console to the other window. Why don't you try out the function right now? 
-  CorrectAnswer: names(var) 
-  AnswerTests: omnitest(correctVal = names(var))
-  Hint: Enters names(var). The headings now appear in the console. 
+  Output: If you look at the table "af", you will see that the columns have headings. With names(af) you can display all the column headings without having to switch from the console to the other window. Why don't you try out the function right now? 
+  CorrectAnswer: names(af)
+  AnswerTests: omnitest(correctVal = names(af))
+  Hint: Enters names(af). The headings now appear in the console.
 
 
 - Class: text
   Output: Especially with such an extensive table, displaying individual values and saving them is very important in order to work with them in R. Individual values from a table can be selected by specifying the numbers of the corresponding row and column. 
 
 - Class: cmd_question
-  Output: Now let R output a value from the var data. You can simply type or copy var[10, 5]. 
-  CorrectAnswer: var[10, 5]
-  AnswerTests: omnitest(correctExpr = 'var[10, 5]')
-  Hint: Enter var[10, 5].
+  Output: Now let R output a value from the af data. You can simply type or copy af[10, 5]. 
+  CorrectAnswer: af[10, 5]
+  AnswerTests: omnitest(correctExpr = 'af[10, 5]')
+  Hint: Enter af[10, 5].
   
 - Class: exact_question
   Output: What value appears in the console?
@@ -195,23 +219,23 @@
   Hint: 'Scroll up a little in the console. There you can see the answer in the previous queries. Otherwise, take another look at the table and read the rows/columns. In which row do you find the number 190 and where in the square brackets is this row number?'
   
 - Class: exact_question
-  Output: With the help of the square brackets, you can also load individual values into the global environment and assign them to an object. You choose a name for the new object and use the arrow to assign it as usual. For example, load the value just called as an object with the name x into the Global Environment. You can type or copy x <- var[10, 5] into the console. The value 190 should now appear as variable x in the global environment.
-  CorrectAnswer: x <- var[10, 5]
-  AnswerTests: omnitest(correctVal = x <- var[10, 5])
-  Hint: Enter x <- var[10, 5]. The value 190 should now appear as variable x in the Global Environment.
+  Output: With the help of the square brackets, you can also load individual values into the global environment and assign them to an object. You choose a name for the new object and use the arrow to assign it as usual. For example, load the value just called as an object with the name x into the Global Environment. You can type or copy x <- af[10, 5] into the console. The value 190 should now appear as variable x in the global environment.
+  CorrectAnswer: x <- af[10, 5]
+  AnswerTests: omnitest(correctVal = x <- af[10, 5])
+  Hint: Enter x <- af[10, 5]. The value 190 should now appear as variable x in the Global Environment.
   
 - Class: mult_question 
   Output: 'In this way you can also load individual data series into the global environment. To do this, you choose a new object name, for example the column heading, and use the arrow as an assignment as usual. How do you extract rows 1 to 119 from column 10? A colon means "to".'
-  CorrectAnswer: "total_cov <- var[1:119, 10]"
-  AnswerChoices: "total_cov <- var[1:119, 10]; total_cov <- var[1, 10]" 
-  AnswerTests: omnitest(correctVal='total_cov <- var[1:119, 10]')
+  CorrectAnswer: "total_cov <- af[1:119, 10]"
+  AnswerChoices: "total_cov <- af[1:119, 10]; total_cov <- af[1, 10]" 
+  AnswerTests: omnitest(correctVal='total_cov <- af[1:119, 10]')
   Hint: The colon symbolises a "to".
   
 - Class: exact_question
-  Output: Earlier you used several functions (dim(), nrow()...) to get an overview of the data set. A summary of all this is offered by the function str(), with which you can display the "structure" of the data. Try it out right away and enter the function str(var). 
-  CorrectAnswer: str(var)
-  AnswerTests: omnitest(correctVal = str(var))
-  Hint: Enter str(var). 
+  Output: Earlier you used several functions (dim(), nrow()...) to get an overview of the data set. A summary of all this is offered by the function str(), with which you can display the "structure" of the data. Try it out right away and enter the function str(af). 
+  CorrectAnswer: str(af)
+  AnswerTests: omnitest(correctVal = str(af))
+  Hint: Enter str(af). 
   
 - Class: mult_question 
   Output: "In the console, above this text, a table appears. At the very beginning of the table, it is stated that it is a dataframe that contains 119 rows (observations) and 19 columns (variables). But what is hidden in the rows below, behind the dollar signs?"
@@ -232,34 +256,34 @@
 
 
 - Class: text
-  Output: "Exactly! Each column of a dataframe is a single vector (with a specific data type). These   dollar signs are really helpful to select single variables of a dataframe. E.g. you want to select the variable 'fama' (which stands for farm management) from the data set. To do this, you must first create a reference to the data set, which is done quite simply by entering 'var'. If you type a dollar sign behind it, all column names will already be displayed (if not, press the Tab key). Selecting the variable in this way avoids some typing errors."
+  Output: "Exactly! Each column of a dataframe is a single vector (with a specific data type). These   dollar signs are really helpful to select single variables of a dataframe. E.g. you want to select the variable 'fama' (which stands for farm management) from the data set. To do this, you must first create a reference to the data set, which is done quite simply by entering 'af'. If you type a dollar sign behind it, all column names will already be displayed (if not, press the Tab key). Selecting the variable in this way avoids some typing errors."
 
 
 - Class: mult_question
   Output: That was a lot of information at once. Can you imagine what the function must look like?
-  AnswerChoices: var$fama;$fama;fama$var
-  CorrectAnswer: var$fama
-  AnswerTests: omnitest(correctVal='var$fama')
+  AnswerChoices: af$fama;$fama;fama$af
+  CorrectAnswer: af$fama
+  AnswerTests: omnitest(correctVal='af$fama')
   Hint: You can scroll up in the console and read the previous descriptions again. Which function fits best?
 
 - Class: cmd_question
-  Output: "First try the dollar sign function. Type var and the dollar sign. Then select the variable fama and press Enter."
-  CorrectAnswer: var$fama
-  AnswerTests: omnitest(correctExpr='var$fama')
+  Output: "First try the dollar sign function. Type af and the dollar sign. Then select the variable fama and press Enter."
+  CorrectAnswer: af$fama
+  AnswerTests: omnitest(correctExpr='af$fama')
   Hint: You can simply copy or type $fama.
   
 - Class: mult_question
   Output: "What is displayed now in the Console is the content of the variable 'fama' as character vector, which is in column 2 of our dataframe. Thinking about what you learned earlier about selecting data from a data frame, how could you perform the same selection using the square brackets []?"
-  AnswerChoices: var[1:119, 2]; var[2, 1:119]; var[2]
-  CorrectAnswer: var[1:119, 2]
-  AnswerTests: omnitest(correctVal='var[1:119, 2]')
+  AnswerChoices: af[1:119, 2]; af[2, 1:119]; af[2]
+  CorrectAnswer: af[1:119, 2]
+  AnswerTests: omnitest(correctVal='af[1:119, 2]')
   Hint: You can scroll up in the console and read the previous descriptions again. At which position in the brackets are rows and columns?
   
 - Class: cmd_question
-  Output: "If you want to select all rows of one column, you can also simply leave this side of the comma empty. var[1:119, 2] does exactly the same as var[, 2] (the same is possible vice versa for selecting all columns of one row). We will need this often, so to repeat this again: Try to select all rows of the columns 5 to 7 and save the result into a new object called 'aspect'"
-  CorrectAnswer: aspect <- var[, 5:7]
-  AnswerTests: any_of_exprs('aspect <- var[, 5:7]', 'aspect <- var[1:119, 5:7]')
-  Hint: Enter aspect <- var[, 5:7] in the console to select all rows of columns 5 to 7 (indicated by the colon).
+  Output: "If you want to select all rows of one column, you can also simply leave this side of the comma empty. af[1:119, 2] does exactly the same as af[, 2] (the same is possible vice versa for selecting all columns of one row). We will need this often, so to repeat this again: Try to select all rows of the columns 5 to 7 and save the result into a new object called 'aspect'"
+  CorrectAnswer: aspect <- af[, 5:7]
+  AnswerTests: any_of_exprs('aspect <- af[, 5:7]', 'aspect <- af[1:119, 5:7]', 'aspect <- af[, c(5,6,7)]')
+  Hint: Enter aspect <- af[, 5:7] in the console to select all rows of columns 5 to 7 (indicated by the colon).
   
 - Class: text
   Output: "Nice. Now look at your Environment. You just created a new data frame containing only these three selected variables. This way you can easily subset your data. If you want, you can have a short look at the table by opening it from the Environment, before continuing with 'Enter'."
@@ -272,25 +296,25 @@
   Hint: Take another close look at the variables. Which one is a nominal variable, i.e. contains categories. 
  
 - Class: text
-  Output: "You are right! The 'fama'-Variable seems to contain different categories represented by letters. If you open the agroforest.ods table and look in the meta-data, you'll see that the letters represent different types of farm management. The 'area_nr' is also a character vector, but contains a unique plot ID instead of categories. In general a factor (= nominal/categorial variable) can be any data type, as long as it represents categories. E.g. the three types of farm management could as well be numbered '1', '2' and '3' and still be a factor. But how does R know which variable is a factor? We need to tell the programme!"
+  Output: "You are right! The 'fama'-Variable seems to contain different categories represented by letters. If you open the agroforest.xls Excel-table and look in the metadata-sheet, you'll see that the letters represent different types of farm management. The 'area_nr' is also a character vector, but contains a unique plot ID instead of categories. In general a factor (= nominal/categorial variable) can be any data type, as long as it represents categories. E.g. the three types of farm management could as well be numbered '1', '2' and '3' and still be a factor. But how does R know which variable is a factor? We need to tell the programme!"
   
 - Class: cmd_question
-  Output: "To assign the data type 'factor' to a variable, you can use the function as.factor(). Type as.factor(var$fama)"
-  CorrectAnswer: as.factor(var$fama)
-  AnswerTests: omnitest(correctExpr = 'as.factor(var$fama)')
-  Hint: Enter as.factor(var$fama).
+  Output: "To assign the data type 'factor' to a variable, you can use the function as.factor(). Type as.factor(af$fama)"
+  CorrectAnswer: as.factor(af$fama)
+  AnswerTests: omnitest(correctExpr = 'as.factor(af$fama)')
+  Hint: Enter as.factor(af$fama).
   
 - Class: cmd_question
-  Output: "Now you defined the variable 'fama' as factor. But we should change the assignment in the data frame for having it ready for further analyses. You can do this by overwriting the variable inside the dataframe using the assignment arrow. Type var$fama <- as.factor(var$fama)." 
-  CorrectAnswer: var$fama <- as.factor(var$fama)
-  AnswerTests: omnitest(correctExpr = 'var$fama <- as.factor(var$fama)')
-  Hint: Type var$fama <- as.factor(var$fama).
+  Output: "Now you defined the variable 'fama' as factor. But we should change the assignment in the data frame for having it ready for further analyses. You can do this by overwriting the variable inside the dataframe using the assignment arrow. Type af$fama <- as.factor(af$fama)." 
+  CorrectAnswer: af$fama <- as.factor(af$fama)
+  AnswerTests: omnitest(correctExpr = 'af$fama <- as.factor(af$fama)')
+  Hint: Type af$fama <- as.factor(af$fama).
   
 - Class: cmd_question
   Output: "Now, lets check the structure of the data frame again. Use the function you've learned earlier."
-  CorrectAnswer: str(var)
-  AnswerTests: omnitest(correctVal = str(var))
-  Hint: Enter str(var). 
+  CorrectAnswer: str(af)
+  AnswerTests: omnitest(correctVal = str(af))
+  Hint: Enter str(af). 
   
 - Class: mult_question 
   Output: The different categories of a factor are called levels. In which factor levels is $fama divided into? Look at the structure.
@@ -301,9 +325,9 @@
 
 - Class: cmd_question
   Output: "Another really useful function to get an overview of your data is the summary()-function. This is already a step into descriptive statistics, but we will try it right now. Apply the function on the data frame"
-  CorrectAnswer: summary(var)
-  AnswerTests: omnitest(correctVal = summary(var))
-  Hint: Enter summary(var). 
+  CorrectAnswer: summary(af)
+  AnswerTests: omnitest(correctVal = summary(af))
+  Hint: Enter summary(af). 
 
 - Class: exact_question
   Output: "You see that you get a summary statistics for each variable. For numerical variables this is e.g. the mean, median, min or max values. For categorial variables (factors) you get the number of observations per factor level. How many observations were done in category 'C' of variable 'fama'?"  
