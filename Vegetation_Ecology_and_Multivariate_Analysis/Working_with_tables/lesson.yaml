@@ -91,26 +91,26 @@
   Output: Now you have all the information you need to read in.
   
 - Class: text
-  Output: 'So the function to read in the agro-forestry data file could look like this: read.table(file= "/data/file", header=TRUE, sep = ";", dec = ".")'
+  Output: 'So the function to read in the agro-forestry data file could look like this: read.table(file= "/data/file", header = TRUE, sep = ";", dec = ".")'
   
 
 - Class: cmd_question
-  Output: 'In the next step, please load the CSV file into your console. You use the function read.table() for this. You can now type in the function read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".") or copy it directly. Then press "Enter" and load the file into your console.'  
-  CorrectAnswer: read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")
-  AnswerTests: omnitest(correctExpr = read.table("data/agroforest_var.csv"))
-  Hint: 'Use the function read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = "."). The data should appear in your Console'
+  Output: 'In the next step, please load the CSV file into your console. You use the function read.table() for this. To make this course work, we avoid typing the real directory here. Instead simply use "agroforest_path" (works only here in this swirl-course). Type read.table(agroforest_path, header = TRUE, sep = ";",dec = ".") or copy it directly. Then press "Enter" and load the file into your console.'  
+  CorrectAnswer: read.table(agroforest_path)
+  AnswerTests: omnitest(correctVal = read.table(agroforest_path))
+  Hint: 'Use the function read.table(agroforest_path, header = TRUE, sep = ";",dec = "."). The data should appear in your Console'
 
 - Class: text
   Output: In the console, above this text, you should have seen the table that was read in, which looks like a jumble of numbers. Of course, you don't just want to look at it, you also want to use it. 
 
 - Class: text
-  Output: 'With an assignment arrow "<-" you can assign the data to a self-selected object name (e.g. var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")). This way, the file becomes a usable variable in the programme. As you may remember, in R this is called an "object".'
+  Output: 'With an assignment arrow "<-" you can assign the data to a self-selected object name. This way, the file becomes a usable variable in the programme. As you may remember, in R this is called an "object".'
 
 - Class: cmd_question
-  Output: You can now type var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".") into the console or copy the function and press "Enter" - this way you assign the object name "var" to the file!
-  CorrectAnswer: var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")
-  AnswerTests: omnitest(var <- read.table("data/agroforest_var.csv"))
-  Hint: You use an assignment arrow and the read.table function. var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")
+  Output: You can now type var <- read.table(agroforest_path, header = TRUE, sep = ";",dec = ".") into the console or copy the function and press "Enter" - this way you assign the object name "var" to the file!
+  CorrectAnswer: var<-read.table(agroforest_path)
+  AnswerTests: omnitest(var <- read.table(agroforest_path))
+  Hint: You use an assignment arrow and the read.table function. var <- read.table(agroforest_path, header = TRUE, sep = ";",dec = ".")
   
 - Class: mult_question
   Output: Where does the data from the CSV file appear now?

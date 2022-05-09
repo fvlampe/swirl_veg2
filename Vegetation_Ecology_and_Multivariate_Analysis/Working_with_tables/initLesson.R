@@ -4,7 +4,7 @@
       # throughout the lesson.
 
 lesson_dir <- file.path(path.package("swirl"), "Courses","Vegetation_Ecology_and_Multivariate_Analysis", "Working_with_tables")
-sp_pfad <- file.path(lesson_dir, "agroforest_var.csv")
+agroforest_path <- file.path(lesson_dir, "agroforest_var.csv")
 
 
 swirl_options(swirl_is_fun = F)
