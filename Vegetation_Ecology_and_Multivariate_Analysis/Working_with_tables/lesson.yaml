@@ -97,17 +97,17 @@
 - Class: cmd_question
   Output: 'In the next step, please load the CSV file into your console. You use the function read.table() for this. You can now type in the function read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".") or copy it directly. Then press "Enter" and load the file into your console.'  
   CorrectAnswer: read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")
-  AnswerTests: omnitest(correctVal = read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = "."))
+  AnswerTests: omnitest(read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = "."))
   Hint: 'Use the function read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = "."). The data should appear in your Console'
 
 - Class: text
   Output: In the console, above this text, you should have seen the table that was read in, which looks like a jumble of numbers. Of course, you don't just want to look at it, you also want to use it. 
 
 - Class: text
-  Output: 'With an assignment arrow "<-" you can assign the data to a self-selected object name (e.g. var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")). This way, the file becomes a usable variable in the programme.We remember: in this case one speaks of an "object".'
+  Output: 'With an assignment arrow "<-" you can assign the data to a self-selected object name (e.g. var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")). This way, the file becomes a usable variable in the programme. As you may remember, in R this is called an "object".'
 
 - Class: cmd_question
-  Output: Du kannst nun var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".") in die Console eintippen oder die Funktion kopieren und drücke "Enter" - so ordnest Du den Objektnamen "var" der Datei zu!
+  Output: You can now type var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".") into the console or copy the function and press "Enter" - this way you assign the object name "var" to the file!
   CorrectAnswer: var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")
   AnswerTests: omnitest(var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = "."))
   Hint: You use an assignment arrow and the read.table function. var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")
