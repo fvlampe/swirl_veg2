@@ -23,7 +23,7 @@
   
 
 - Class: text
-  Output: 'Very nice. To avoid absolute pathnames we will not use the setwd()-command in each script but use our RStudio project folder. Now we can import data into our workspace. Unfortunately, it is easy to make mistakes when loading data - so you can practise it here step by step!'
+  Output: 'Very nice. With the command setwd() you can (re-)define your working directory. To avoid absolute pathnames we will not use the setwd()-command in each script but use our RStudio project folder instead. This is the folder, you justed displayed with getwd(). You can also see it in RStudio at the top of the Console-window. Now we can import data into our workspace. Unfortunately, it is easy to make mistakes when loading data - so you can practise it here step by step!'
   
 - Class: text
   Output: 'R is compatible with different file formats. You can read in text files (.txt), Excel tables (.xls, .xlsx) and CSV files (.csv). The agroforest dataset (a sample dataset from an agro-forestry study in Kaule, Nepal) used in this lesson is stored in two of these formats. For importing in R the CSV-format is a really good choice, as it works really easy and exact'
@@ -85,7 +85,7 @@
   Hint: "type TRUE or FALSE"
   
 - Class: text
-  Output: First of all, you must specify the storage location where the file is located. Usually you do this with the argument file= "drive/folder/file". As we have defined our project directory as working directory, we only have to define the relative position of the file to the base folder of our working directory. So it you copied the CSV file into the "data"-subfolder this will be "data/file". That is really practical, as it is the same on all computers running this project (you can just copy the folder on your USB-stick or share it in the cloud, it will always work)!
+  Output: First of all, you must specify the storage location where the file is located. Usually you do this with the argument file= "drive/folder/file". As we have defined our project directory as working directory, we only have to define the relative position of the file to the base folder of our working directory. So it you copied the CSV file into the "data"-subfolder this will be "data/file". That is really practical, as it is the same on all computers running this project - you can just copy the folder on your USB-stick or share it in the cloud, it will always work!
 
 - Class: text
   Output: Now you have all the information you need to read in.
@@ -109,7 +109,7 @@
 - Class: cmd_question
   Output: Du kannst nun var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".") in die Console eintippen oder die Funktion kopieren und drücke "Enter" - so ordnest Du den Objektnamen "var" der Datei zu!
   CorrectAnswer: var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")
-  AnswerTests: omnitest(correctVal = var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = "."))
+  AnswerTests: omnitest(var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = "."))
   Hint: You use an assignment arrow and the read.table function. var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")
   
 - Class: mult_question
@@ -120,7 +120,7 @@
   Hint: A new object should have appeared in the RStudio window, top right. What is the name of this area? Global Environment or History?
 
 - Class: text
-  Output: 'Super! By reading in the data  you have mastered one big hurdle in working with R. Now we should check if everything is loaded correctly and get some informations about the dataset'
+  Output: 'Super! By reading in the data you have mastered one big hurdle in working with R. Now we should check if everything is loaded correctly and get some informations about the dataset'
   
 - Class: text
   Output: 'In RStudio you can simply View the dataset by clicking on in in the Environment. Just try it out (it does the same as typing view(var) in the Console). You can look at the table and sort the columns. When it worked, please continue with "Enter"'
