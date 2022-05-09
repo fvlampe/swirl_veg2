@@ -97,7 +97,7 @@
 - Class: cmd_question
   Output: 'In the next step, please load the CSV file into your console. You use the function read.table() for this. You can now type in the function read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".") or copy it directly. Then press "Enter" and load the file into your console.'  
   CorrectAnswer: read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")
-  AnswerTests: omnitest(correctExpr = read.table('data/agroforest_var.csv', header = TRUE, sep = ';',dec = '.'))
+  AnswerTests: omnitest(correctExpr = read.table("data/agroforest_var.csv"))
   Hint: 'Use the function read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = "."). The data should appear in your Console'
 
 - Class: text
@@ -109,7 +109,7 @@
 - Class: cmd_question
   Output: You can now type var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".") into the console or copy the function and press "Enter" - this way you assign the object name "var" to the file!
   CorrectAnswer: var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")
-  AnswerTests: omnitest(var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = "."))
+  AnswerTests: omnitest(var <- read.table("data/agroforest_var.csv"))
   Hint: You use an assignment arrow and the read.table function. var <- read.table("data/agroforest_var.csv", header = TRUE, sep = ";",dec = ".")
   
 - Class: mult_question
