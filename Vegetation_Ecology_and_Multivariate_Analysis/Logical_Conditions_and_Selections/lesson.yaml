@@ -1,7 +1,7 @@
 - Class: meta
   Course: Vegetation Ecology and Multivariate Analysis
   Lesson: Logical Conditions and Selections
-  Author: Friedemann von Lampe, based on courses by Nick Carchedi
+  Author: Friedemann von Lampe, inspired by courses from Nick Carchedi, dataset from RLab
   Type: Standard
   Organization: Georg-August-University Göttingen
   Version: 2.4.5
@@ -152,48 +152,87 @@
   Output: Remember how you selected a single value from the af dataframe. Try to select the second row of the column area_nr.  
   CorrectAnswer: af[2, 1]
   AnswerTests: any_of_exprs('af$area_nr', 'af[2, 1]')
-  Hint: In which column is the variable area_nr? You want to select the second row of this columns. 
+  Hint: In which column is the variable area_nr? You want to select the second row of this columns.
   
 - Class: mult_question
-  Output: Sticking with the north value. If we want to select all observations of our dataframe, which are southern exposed (i.e. north value greater than zero) - what do you think would be the right expression?
-  AnswerChoices: af[af$north > 0, ]; af[ ,af$north > 0]; af$north > 0
-  CorrectAnswer: af[af$north > 0, ]
-  AnswerTests: omnitest(correctVal="af[af$north > 0, ]")
-  Hint: The logical expression af$north > 0 will give us TRUE for each element of af$north that is positive. Based on that, what do you think could a selection in the dataframe look like? Remember the dimensions and where to put rows and columns.
+  Output: 'In the study design not all variables were sampled for the biotope type "both" (variable "bt") resulting in many NAs. Now we want to create a subset without this biotope type. Which of the following options seems reasonable to you?'
+  AnswerChoices: af[af$bt != "both", ]; af[af$bt == "both", ]; af[af$bt & "both", ]
+  CorrectAnswer: af[af$bt != "both", ]
+  AnswerTests: omnitest(correctVal='af[af$bt != "both", ]')
+  Hint: "The logical operator '!=' means UNEQAL."
+  
+- Class: cmd_question
+  Output: 'Lets try it out. Select all samples NOT belonging to biotope type "both" and store them into a new dataframe called "af_s"'
+  CorrectAnswer: af_s <- af[af$bt != "both", ]
+  AnswerTests: omnitest(correctExpr= 'af_s <- af[af$bt != "both", ]')
+  Hint: Look at the question before. Apply this selection and assign the result to an object called 'af_s'
+  
+- Class: cmd_question
+  Output: 'Now you can see a new dataframe with 95 observations in the workspace. Have a look on it by clicking on it'
+  CorrectAnswer: View(af_s)
+  AnswerTests: omnitest(correctVal = View(af_s))
+  Hint: Click on the dataframe af_s in the Environment or type 'View(af_s)'
+  
+- Class: cmd_question
+  Output: 'Lets check if there are any NAs left in this new dataframe. To you remember the function? Apply it on the dataframe'
+  CorrectAnswer: is.na(af_s)
+  AnswerTests: omnitest(correctExpr= 'is.na(af_s)')
+  Hint: The function is called is.na(). Apply it on the new dataframe.
+  
+- Class: cmd_question
+  Output: 'OK, now we see many many FALSE values. But are there really no TRUEs left? They would be easy to oversee. To check you can use the function which(). It asks "Which indices are TRUE?". Type which(is.na(af_s))'
+  CorrectAnswer: which(is.na(af_s))
+  AnswerTests: omnitest(correctExpr= 'which(is.na(af_s))')
+  Hint: Type which(is.na(af_s))
+  
+- Class: mult_question
+  Output: Are there any NAs left?
+  AnswerChoices: Yes; No; Maybe
+  CorrectAnswer: No
+  AnswerTests: omnitest(correctVal="No")
+  Hint: Try to interpret the result of the function which(). It gives you the indices of the elements which are TRUE. If no index numbers are given, the result is empty (length zero). 
+  
+- Class: text
+  Output: "Very well. Now we will continue with our new subset in dataframe 'af_s'"
+  
+- Class: mult_question
+  Output: Sticking with the north value. If we want to select all observations of 'af_s', which are southern exposed (i.e. north value greater than zero) - what do you think would be the right expression?
+  AnswerChoices: af_s[af_s$north > 0, ]; af_s[ ,af_s$north > 0]; af_s$north > 0
+  CorrectAnswer: af_s[af_s$north > 0, ]
+  AnswerTests: omnitest(correctVal='af_s[af_s$north > 0, ]')
+  Hint: The logical expression af_s$north > 0 will give us TRUE for each element of af_s$north that is positive. Based on that, what do you think could a selection in the dataframe look like? Remember the dimensions and where to put rows and columns.
 
 - Class: text
   Output: Very well. As we want to show all columns of our observations selected with logical criteria, we need to leave the second element in the square brackets (indicating columns) empty. That means, all columns for the selected observations should be included.
   
 - Class: cmd_question
   Output: "Now, we want to use the '==' operator, which means EQUAL. Based on what you just learned, try to apply it to select all observations with a north value of exact -1 (i.e. south exposition)." 
-  CorrectAnswer:  af[af$north == -1, ]
-  AnswerTests: omnitest(correctVal="af[af$north == -1, ]") 
-  Hint: Enter af[af$north == -1, ] in the Console.
+  CorrectAnswer:  af_s[af_s$north == -1, ]
+  AnswerTests: omnitest(correctExpr= 'af_s[af_s$north == -1, ]') 
+  Hint: Enter af_s[af_s$north == -1, ] in the Console.
   
-- Class: text
-  Output: Great. We still have the NAs here, so combining it with an !is.na()-function you could also unselect these in necessary.
-  
+
 - Class: cmd_question
-  Output: "Sometimes you want to know which rows of the dataframe correspond to your selection. Therefore you can use the function which(). Try which(af$north == -1) to find out which rows have a north value of -1."
-  CorrectAnswer:  which(af$north == -1)
-  AnswerTests: omnitest(correctVal = 'which(af$north == -1)') 
-  Hint: Enter which(af$north == -1) in the console.
+  Output: "Sometimes you want to know which rows of the dataframe correspond to your selection. Therefore you can again use the function which(). Try which(af_s$north == -1) to find out which rows have a north value of -1."
+  CorrectAnswer:  which(af_s$north == -1)
+  AnswerTests: omnitest(correctExpr = 'which(af_s$north == -1)') 
+  Hint: Enter which(af_s$north == -1) in the console.
 
 - Class: cmd_question
   Output: "How many observations have a north value of -1? Enter the number. Tip: You can count manually or use the function length() to calculate the length of a vector."  
   CorrectAnswer: 8
   AnswerTests: omnitest(correctVal = 8)
-  Hint: Use length(which(af$north == -1)) to calculate the number ob observations. 
+  Hint: Use length(which(af_s$north == -1)) to calculate the number ob observations. 
 
 - Class: mult_question
-  Output: Imagine you would like to select all observations with a pH value >6 and <5 AND also exclude the missing values. How could you do this?
-  AnswerChoices: af[!is.na(af$pH_H2O) & (af$pH_H2O > 6 | af$pH_H2O < 5), ]; af[!is.na(af$pH_H2O) & (af$pH_H2O > 6 & af$pH_H2O < 5), ]
-  CorrectAnswer: af[!is.na(af$pH_H2O) & (af$pH_H2O > 6 | af$pH_H2O < 5), ]
-  AnswerTests: omnitest(correctVal="af[!is.na(af$pH_H2O) & (af$pH_H2O > 6 | af$pH_H2O < 5), ]")
-  Hint: Here we combine the selection of not NA with the selection of the pH values. Can both conditions for the pH values be TRUE at the same time?
+  Output: Imagine you would like to select all observations with a pH value >6 and <5. How could you do this?
+  AnswerChoices: af_s[af_s$pH_H2O > 6 | af_s$pH_H2O < 5), ]; af_s[af_s$pH_H2O > 6 & af_s$pH_H2O < 5), ]
+  CorrectAnswer: af_s[af_s$pH_H2O > 6 | af_s$pH_H2O < 5), ]
+  AnswerTests: omnitest(correctVal="af_s[af_s$pH_H2O > 6 | af_s$pH_H2O < 5), ]")
+  Hint: Think - can both conditions for the pH values be TRUE at the same time?
   
 - Class: text
-  Output: As you see, you can use brackets to combine conditions in logical order. Also always think about which conditions can really be TRUE at the same time.
+  Output: Always think about which conditions can really be TRUE at the same time. A pH value cannot be smaller than 5 AND greater than 6 at the same time - only one condition can (and needs to be) TRUE for this selection. 
 
 - Class: text
   Output: Now you know some methods of subsetting data from vectors and dataframes. Different approaches are best in different scenarios and when in doubt, try it out!
