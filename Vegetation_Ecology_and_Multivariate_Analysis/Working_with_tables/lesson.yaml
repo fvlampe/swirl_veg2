@@ -8,7 +8,7 @@
   
   
 - Class: text
-  Output: "Welcome to the second lesson in which you learn how to load data tables into R. At this point of course you should have created your own RStudio project for our course as well as downloaded and extracted all data-files into the subfolder 'data' of your project-folder. If you haven't done this yet, please come back later. If you have any questions or problems, please ask the tutors!"
+  Output: "Welcome to the second lesson in which you learn how to load data tables into R. At this point of course we recommend that you have created your own RStudio project for our course as well as downloaded and extracted all data-files into the subfolder 'data' of your project-folder. If you haven't done this yet, you can still carry out this lesson, as long as you have access to the agroforestry dataset. If you have any questions or problems, please ask the tutors!"
 
 - Class: text
   Output: 'If you want to cancel a course, you can type "bye()" or press the escape key. If one of these functions does not work, try the other variant. This way you end the package "swirl", to start "swirl" again, start again with the input of swirl().'
@@ -26,10 +26,10 @@
   Output: 'Very nice. With the command setwd() you can (re-)define your working directory. To avoid absolute pathnames we will not use the setwd()-command in each script but use our RStudio project folder instead. This is the folder, you justed displayed with getwd(). You can also see it in RStudio at the top of the Console-window. Now we can import data into our workspace. Unfortunately, it is easy to make mistakes when loading data - so you can practise it here step by step!'
   
 - Class: text
-  Output: 'R is compatible with different file formats. You can read in text files (.txt), Excel tables (.xls, .xlsx) and CSV files (.csv). The agroforest dataset (a sample dataset from an agro-forestry study in Kaule, Nepal) used in this lesson is stored in two of these formats. For importing in R the CSV-format is a really good choice, as it works really easy and exact'
+  Output: 'R is compatible with different file formats. You can read in text files (.txt), Excel tables (.xls, .xlsx) and CSV files (.csv). The agroforest dataset (a sample dataset from an agroforestry study in Kaule, Nepal) used in this lesson is stored in two of these formats. For importing in R the CSV-format is a really good choice, as it works really easy and exact'
 
 - Class: exact_question
-  Output: First look at the agroforest_vars data set as a CSV file. You should find the file in the /data subfolder of your project folder. Open the file with Microsoft Excel/LibreOffice Calc. How many rows are in the data?
+  Output: First look at the agroforest dataset as a CSV file. You should find the file agroforest_var.csv in the /data subfolder of your project folder. Open the file with Microsoft Excel/LibreOffice Calc. How many rows are in the data?
   CorrectAnswer: 120
   AnswerTests: omnitest(correctVal = 120)
   Hint: "Scroll to the last row in the file. Rows scroll down, columns scroll to the right."
@@ -91,7 +91,7 @@
   Output: Now you have all the information you need to read in.
   
 - Class: text
-  Output: 'So the function to read in the agro-forestry data file could look like this: read.table(file= "/data/file", header = TRUE, sep = ",", dec = ".")'
+  Output: 'So the function to read in the agroforestry data file could look like this: read.table(file = "/data/agroforest_var.csv", header = TRUE, sep = ",", dec = ".")'
   
 
 - Class: cmd_question
