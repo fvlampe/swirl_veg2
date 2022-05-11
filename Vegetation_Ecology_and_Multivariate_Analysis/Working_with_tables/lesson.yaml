@@ -43,8 +43,14 @@
 - Class: text
   Output: Column headings are called "header" in R. 
   
+- Class: cmd_question
+  Output: For loading tables into R the read.table function is used. Of course, there are other possibilities, such as read.csv(). But the read.table() function is the least likely to cause errors. Please call the help page for "read.table" from the Console. Do you remember the command?
+  CorrectAnswer: ?read.table
+  AnswerTests: any_of_exprs('?read.table', 'help(read.table)')
+  Hint: Type ?read.table and press Enter.
+  
 - Class: text
-  Output: For loading tables into R the read.table function is used. Of course, there are other possibilities, such as read.csv(). But the read.table() function is the least likely to cause errors. If you now enter "read.table" in the help window, a list of function arguments appears under "Usage", which you can specify for the file to be read. All of them are useful, but we will limit ourselves to the most important ones. 
+  Output: Looking at the help window for read.table() a list of function arguments appears under "Usage". You need to specify these inside the function to correctly read a file. All of them are useful, but we will limit ourselves to the most important ones. The detailed explanations of the arguments is found further down in section "Arguments" of the help page.
 
 - Class: text
   Output: The easiest way for errors to occur when reading in is through no or incorrect information about the structure of the file. It is especially important to specify decimal and column separators, as these often differ. These can be spaces, points or commas.

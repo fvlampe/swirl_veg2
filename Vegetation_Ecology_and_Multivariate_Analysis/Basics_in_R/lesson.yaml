@@ -125,19 +125,18 @@
     new variable called z. Including single spaces after the commas in the vector
     is not required, but helps make your code less cluttered and more readable.
 
-
 - Class: cmd_question
   Output: Anytime you have questions about a particular function, you can access R's
     built-in help files via the `?` command. For example, if you want more information
     on the c() function, type ?c without the parentheses that normally follow a function
     name. Give it a try.
   CorrectAnswer: ?c
-  AnswerTests: omnitest(correctExpr='?c')
+  AnswerTests: any_of_exprs('?c', 'help(c)')
   Hint: Type ?c and press Enter. This will bring up the help file for the c() function.
   
 - Class: text
   Output: As you can see, the help text is displayed at the bottom right of the RStudio window. 
-    It shows the command itself, the options for using it and what else you should be aware of when using it.
+    It shows the command itself, the options for using it (these parameters are called "Arguments") and what else you should be aware of when using it.
     Particularly helpful are the "examples" because they always work and can be used as a starting point for your 
     own adaptations. So you can always copy the "example" into your R script and try it out. 
     In RStudio you can also use the search-function in the "Help"-Tab of the bottom-right pane to search for functions.
@@ -261,7 +260,7 @@
     to call up the help integrated in R with the help of the ? followed by a function name. 
     help integrated in R. You can now display the help entry for the function "log"!
   CorrectAnswer: ?log
-  AnswerTests: any_of_exprs('?log', '?log()')
+  AnswerTests: any_of_exprs('?log', '?log()', 'help(log)')
   Hint: 'You can call up the help using ? We are looking for help on the function "log". The 
     correct input is as follows: ?log. Type or copy this into the console and then 
     then send your input to R with the "Enter" key.'
