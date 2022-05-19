@@ -8,13 +8,13 @@
   
   
 - Class: text
-  Output: "Welcome to the third lesson. In this lesson you will learn how select subsets of your data. The focus will the use of logical conditions to select observations form the dataframe. We'll continue with our agro-forestry dataset from last lesson."
+  Output: "Welcome to the third lesson. In this lesson you will learn how to select subsets of your dataset. The focus will be on the use of logical conditions to select observations from the dataframe. We'll continue with our agro-forestry dataset from the last lesson."
   
 - Class: text
   Output: 'If you want to cancel a course, you can type "bye()" or press the escape key. If one of these functions does not work, try the other variant. This way you end the package "swirl", to start "swirl" again, start again with the input of swirl().'
   
 - Class: cmd_question
-  Output: 'Last lesson you learned, that each column of a dataframe represents a vector. We want to start with a vector. The "af"-dataframe is already loaded in the Workspace. Please assign the variable "north" from the dataframe to a new vector called "north"'
+  Output: 'Last lesson you learned that each column of a dataframe represents a vector. We want to start with a vector. The "af"-dataframe is already loaded in the Workspace. Please assign the variable "north" from the dataframe to a new vector called "north"'
   CorrectAnswer: north <- af$north
   AnswerTests: omnitest(correctExpr = 'north <- af$north')
   Hint: Remember how to select a variable from a dataframe. Type north <- af$north. 
@@ -180,7 +180,7 @@
   Hint: The function is called is.na(). Apply it on the new dataframe.
   
 - Class: cmd_question
-  Output: 'OK, now we see many many FALSE values. But are there really no TRUEs left? They would be easy to oversee. To check you can use the function which(). It asks "Which indices are TRUE?". Type which(is.na(af_s))'
+  Output: 'OK, now we see many many FALSE values. But are there really no TRUEs left? They would be easily overlooked. To check you can use the function which(). It asks "Which indices are TRUE?". Type which(is.na(af_s))'
   CorrectAnswer: which(is.na(af_s))
   AnswerTests: omnitest(correctExpr= 'which(is.na(af_s))')
   Hint: Type which(is.na(af_s))
@@ -196,7 +196,7 @@
   Output: "Very well. Now we will continue with our new subset in dataframe 'af_s'"
   
 - Class: mult_question
-  Output: Sticking with the north value. If we want to select all observations of 'af_s', which are southern exposed (i.e. north value greater than zero) - what do you think would be the right expression?
+  Output: Sticking with the north value. If we want to select all observations of 'af_s' which have a southern exposition (i.e. north value greater than zero) - what do you think would be the right expression?
   AnswerChoices: af_s[af_s$north > 0, ]; af_s[ ,af_s$north > 0]; af_s$north > 0
   CorrectAnswer: af_s[af_s$north > 0, ]
   AnswerTests: omnitest(correctVal='af_s[af_s$north > 0, ]')
