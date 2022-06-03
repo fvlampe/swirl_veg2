@@ -413,8 +413,8 @@
   
 - Class: text
   Output: 'Very nice, hope that we can deepen your friendship with R in this course. To sum up, you know
-    four data types now: numeric (continuous variables, which can take on an infinite number of values), 
-    integer (discrete variables, which can only take on a finite number of values = whole numbered), 
+    four data types now: numeric (continuous variables, which can take all rational numbers), 
+    integer (discrete variables, which can only take whole numbers), 
     character and logical. A vector can contain any of these data types, but only one single data type 
     per vector. You are almost finished with the basics.'
     
